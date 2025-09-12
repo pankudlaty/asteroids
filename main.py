@@ -14,10 +14,10 @@ def main():
     updateable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteroid = pygame.sprite.Group()
-    shot = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
     clock = pygame.time.Clock()
     dt = 0
-    Shot.containers = (updateable,drawable,shot)
+    Shot.containers = (updateable,drawable,shots)
     AsteroidField.containers = (updateable)
     Asteroid.containers = (asteroid,updateable,drawable)
     Player.containers = (updateable,drawable)
@@ -33,6 +33,11 @@ def main():
             if a.is_coliding(player):
                 print("Game Over!")
                 sys.exit()
+            for s in shots:
+                if a.is_coliding(s):
+                    s.kill()
+                    a.split()
+                    
         screen.fill("black")
         for d in drawable:
             d.draw(screen)
