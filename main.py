@@ -17,13 +17,13 @@ def main():
     shots = pygame.sprite.Group()
     clock = pygame.time.Clock()
     dt = 0
-    Shot.containers = (updateable,drawable,shots)
-    AsteroidField.containers = (updateable)
-    Asteroid.containers = (asteroid,updateable,drawable)
-    Player.containers = (updateable,drawable)
+    Shot.containers = (updateable, drawable, shots)
+    AsteroidField.containers = updateable
+    Asteroid.containers = (asteroid, updateable, drawable)
+    Player.containers = (updateable, drawable)
     asteroidfield = AsteroidField()
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-    screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -37,7 +37,7 @@ def main():
                 if a.is_coliding(s):
                     s.kill()
                     a.split()
-                    
+
         screen.fill("black")
         for d in drawable:
             d.draw(screen)
